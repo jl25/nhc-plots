@@ -1,6 +1,9 @@
-err1 = importdata('intensity_errors.txt');
-err2 = importdata('intensity_errors2.txt');
+% Import Data
+addpath('scripts')
+err1 = importdata('txt/intensity_errors.txt');
+err2 = importdata('txt/intensity_errors2.txt');
 
+% Create the error matrix
 err_h0 = vertcat(err1(:, 2), err2(:, 2));
 err_h12 = vertcat(err1(:, 4), err2(:, 4));
 err_h24 = vertcat(err1(:, 6), err2(:, 6));
@@ -16,6 +19,7 @@ errs = errs * 1.15078; % kts to mph
 l_colors = hsv(size(errs, 2));
 hs = zeros(size(errs, 2), 1);
 
+% Plot the errors
 figure('units','normalized','outerposition',[0 0 0.7 0.7]);
 for i = 1:size(errs, 2)
     xx = years(~isnan(errs(:, i)));
